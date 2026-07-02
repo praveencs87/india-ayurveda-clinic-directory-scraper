@@ -1,0 +1,36 @@
+{
+    "title": "India Ayurveda Clinic Scraper Input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "keyword": {
+            "title": "Keyword (Category)",
+            "type": "string",
+            "description": "The specific medical category (e.g., 'ayurveda clinic', 'ayurvedic doctor', 'panchakarma center').",
+            "editor": "textfield",
+            "prefill": "ayurveda clinic"
+        },
+        "location": {
+            "title": "Location (City)",
+            "type": "string",
+            "description": "The Indian City (e.g., 'Kerala', 'Rishikesh', 'Delhi').",
+            "editor": "textfield",
+            "prefill": "Kerala"
+        },
+        "maxLeads": {
+            "title": "Maximum Leads",
+            "type": "integer",
+            "description": "Maximum number of Ayurvedic clinic leads to extract.",
+            "default": 100,
+            "minimum": 1
+        },
+        "proxyConfiguration": {
+            "title": "Proxy Configuration",
+            "type": "object",
+            "description": "Proxy settings. Apify Residential Proxy (India targeted) is highly required.",
+            "prefill": { "useApifyProxy": true },
+            "editor": "proxy"
+        }
+    },
+    "required": ["keyword", "location"]
+}
