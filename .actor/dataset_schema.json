@@ -1,0 +1,67 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "type": "object",
+        "properties": {
+            "url": {
+                "type": "string",
+                "title": "Url",
+                "description": "URL of the scraped page",
+                "example": "https://example.com"
+            },
+            "title": {
+                "type": "string",
+                "title": "Title",
+                "description": "Name or title of the item",
+                "example": "Example Product Name"
+            },
+            "description": {
+                "type": "string",
+                "title": "Description",
+                "description": "Description or summary of the item",
+                "example": "A brief description of the item."
+            },
+            "scrapedAt": {
+                "type": "string",
+                "title": "Scraped At",
+                "description": "ISO timestamp of when the item was scraped",
+                "example": "2026-07-06T12:00:00.000Z"
+            }
+        }
+    },
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "description": "Overview of data extracted by India Ayurveda Clinic Directory Scraper",
+            "transformation": {
+                "fields": [
+                    "url",
+                    "title",
+                    "description",
+                    "scrapedAt"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "url": {
+                        "label": "Url",
+                        "format": "link"
+                    },
+                    "title": {
+                        "label": "Title",
+                        "format": "text"
+                    },
+                    "description": {
+                        "label": "Description",
+                        "format": "text"
+                    },
+                    "scrapedAt": {
+                        "label": "Scraped At",
+                        "format": "date"
+                    }
+                }
+            }
+        }
+    }
+}

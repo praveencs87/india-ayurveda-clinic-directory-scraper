@@ -7,8 +7,7 @@ await Actor.init();
 try {
     const input = await Actor.getInput();
     const { 
-        keyword = 'ayurveda clinic', 
-        location = 'Kerala', 
+        startUrls = [],
         maxLeads = 100,
         proxyConfiguration 
     } = input || {};
@@ -19,7 +18,7 @@ try {
         apifyProxyCountry: 'IN'
     });
 
-    log.info(`Searching Indian Directories for "${keyword}" in "${location}"`);
+    log.info(`Searching Indian Directories...`);
     await Actor.charge({ eventName: 'apify-actor-start', count: 1 });
 
     let extractedCount = 0;
@@ -85,7 +84,7 @@ try {
                 if (clinicName && clinicName.length > 1) {
                     const record = {
                         clinicName,
-                        specialties: keyword,
+                        specialties: '',
                         address,
                         phone,
                         rating: `${rating} ${reviews}`.trim(),
@@ -137,14 +136,14 @@ try {
         }
     });
 
-    const formatLocation = location.toLowerCase().replace(/\s+/g, '-');
-    const formatKeyword = keyword.toLowerCase().replace(/\s+/g, '-');
-    // Using Justdial as the primary engine for local healthcare discovery in India
-    const startUrl = `https://www.justdial.com/${formatLocation}/${formatKeyword}`;
-    
-    await crawler.addRequests([{
-        url: startUrl
-    }]);
+    if (startUrls && startUrls.length > 0) {
+        for (const req of startUrls) {
+            await crawler.addRequests([{ url: typeof req === 'string' ? req : req.url }]);
+        }
+    } else {
+        log.warning('No startUrls provided. Using default.');
+        await crawler.addRequests([{ url: 'https://www.justdial.com/Kerala/Ayurvedic-Clinics' }]);
+    }
 
     armKillSwitch(crawler);
     await crawler.run();

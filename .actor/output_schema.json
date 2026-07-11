@@ -1,0 +1,13 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "India Ayurveda Clinic Directory Scraper Output",
+    "description": "Output data from the India Ayurveda Clinic Directory Scraper. Results are stored in the default Apify dataset.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Results",
+            "description": "Extracted data items stored in the default dataset.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

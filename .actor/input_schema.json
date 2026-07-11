@@ -3,19 +3,14 @@
     "type": "object",
     "schemaVersion": 1,
     "properties": {
-        "keyword": {
-            "title": "Keyword (Category)",
-            "type": "string",
-            "description": "The specific medical category (e.g., 'ayurveda clinic', 'ayurvedic doctor', 'panchakarma center').",
-            "editor": "textfield",
-            "prefill": "ayurveda clinic"
-        },
-        "location": {
-            "title": "Location (City)",
-            "type": "string",
-            "description": "The Indian City (e.g., 'Kerala', 'Rishikesh', 'Delhi').",
-            "editor": "textfield",
-            "prefill": "Kerala"
+        "startUrls": {
+            "title": "Start URLs",
+            "type": "array",
+            "description": "List of search URLs to scrape.",
+            "editor": "requestListSources",
+            "prefill": [
+                { "url": "https://www.justdial.com/Kerala/Ayurvedic-Clinics" }
+            ]
         },
         "maxLeads": {
             "title": "Maximum Leads",
@@ -32,5 +27,5 @@
             "editor": "proxy"
         }
     },
-    "required": ["keyword", "location"]
+    "required": ["startUrls"]
 }

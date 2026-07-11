@@ -33,5 +33,9 @@
     "build": "latest",
     "timeoutSecs": 1800,
     "memoryMbytes": 4096
+  },
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
   }
 }
